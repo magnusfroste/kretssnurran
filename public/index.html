@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kretssnurran – sluten krets och strömbrytare (åk 4–6)</title>
+<meta name="description" content="Batteri, lampa och strömbrytare ska kopplas så att strömmen kan gå hela vägen runt. Lampan lyser bara när kretsen är sluten – prova, se och lyssna på varför. Fysik åk 4–6: elektriska kretsar. Gratis, ingen inloggning.">
+<meta name="theme-color" content="#faf7f2">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="manifest" href="site.webmanifest">
+<meta property="og:title" content="Kretssnurran">
+<meta property="og:description" content="Sätt ström på rätt väg: koppla batteri, lampa och strömbrytare så att lampan lyser. Fysik åk 4–6.">
+<meta property="og:image" content="og.png">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="styles.css">
+<script src="https://www.skolappar.com/kotten.js" defer></script>
+</head>
+<body>
+
+<div id="startskarm">
+  <div class="sk-inner">
+    <img class="sk-ikon" src="icon-192.png" alt="" width="84" height="84">
+    <h1>Kretssnurran</h1>
+    <p class="sk-tagline">Sätt ström på rätt väg.</p>
+    <div class="sk-taggar">
+      <span>Fysik</span><span>Åk 4–6</span><span>Elektriska kretsar</span>
+    </div>
+    <button class="sk-play" id="spela" aria-label="Spela Kretssnurran">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg>
+      Spela
+    </button>
+    <p class="sk-fot">Gratis · ingen inloggning · skolappar.com</p>
+    <details class="sk-laroplan">
+      <summary>Läroplanskoppling (Lgr22)</summary>
+      <p><b>Fysik, åk 4–6, centralt innehåll:</b> ”Elektriska kretsar med batterier. Hur de kan kopplas och hur de kan användas i vardaglig elektrisk utrustning.”</p>
+      <p>Kretsen är en slinga med platser där delarna ska sitta. Barnet trycker på en del i brickan och sedan på en plats i kretsen. Kretsen räknas ut direkt: lampan lyser bara om strömmen kan gå hela vägen runt – det vill säga om alla platser har en ledande del, det finns ett batteri och en lampa, och alla strömbrytare är slutna. Går det inte att tända lampan säger Kotten var strömmen tar slut (ett gap, en öppen brytare, en gummislang) och barnet får försöka igen utan att något går förlorat. Nivå 1–4 lägger till en sak i taget: batteri och lampa, strömbrytare, ett gap som kräver koppartråd, och två lampor efter varandra. Källa: Skolverket, läroplanen för grundskolan (Lgr22).</p>
+    </details>
+  </div>
+</div>
+
+<main id="spelet" hidden>
+  <header class="hud">
+    <div class="hud-vanster">
+      <span class="niva-prickar" id="nivaPrickar" aria-hidden="true"></span>
+      <span class="hud-text" id="nivaText">Nivå 1</span>
+    </div>
+    <div class="hud-mitten">
+      <span class="stjarnor" id="stjarnor" aria-label="0 stjärnor">☆☆☆</span>
+    </div>
+    <div class="hud-hoger">
+      <button class="knapp" id="upprepa" aria-label="Läs upp målet igen">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h9a5 5 0 1 1-5 5H5a7 7 0 1 0 7-7H4V3L0 6.5 4 10z"/></svg>
+      </button>
+      <button class="knapp" id="ljud" aria-label="Stäng av ljud" aria-pressed="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9v6h4l5 4V5L7 9H3z"/><path class="ljud-streck" d="M16 8l5 8M21 8l-5 8" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <section class="spel">
+    <h2 class="mal" id="mal">Tänd lampan.</h2>
+    <div class="brada" id="brada">
+      <svg id="tavla" viewBox="0 0 1000 620" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="tavla-titel">
+        <title id="tavla-titel">En krets med platser för batteri, lampa och strömbrytare</title>
+        <g id="lager-wire"></g>
+        <g id="lager-plats"></g>
+        <g id="lager-del"></g>
+        <g id="lager-kotten"></g>
+      </svg>
+    </div>
+    <div class="bricka" id="bricka" role="group" aria-label="Delar att sätta i kretsen"></div>
+    <p class="hjalp" id="hjalp">Tryck på en del, sedan på en plats i kretsen.</p>
+  </section>
+
+  <div class="ruta" id="ruta" hidden>
+    <div class="ruta-inner">
+      <svg class="ruta-kotten" id="rutaKotten" viewBox="0 0 200 200" aria-hidden="true"></svg>
+      <p class="ruta-titel" id="rutaTitel">Kretsen är sluten!</p>
+      <p class="ruta-text" id="rutaText"></p>
+      <button class="knapp-stor" id="rutaKnapp">Nästa nivå</button>
+    </div>
+  </div>
+</main>
+
+<script src="app.js" defer></script>
+</body>
+</html>

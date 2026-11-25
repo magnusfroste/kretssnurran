@@ -1,0 +1,83 @@
+:root{
+  --papper:#faf7f2; --papper2:#f2ece1; --black:#14181f; --mjuk:#5d6470;
+  --gron:#2f7d5a; --gron2:#1f5c41; --gul:#e8a33d; --rod:#c4452f;
+  --koppar:#c2703a; --bla:#2c6fa8;
+}
+*{box-sizing:border-box}
+[hidden]{display:none !important}
+html,body{margin:0;height:100%}
+body{
+  background:var(--papper); color:var(--black);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  -webkit-text-size-adjust:100%; touch-action:manipulation; overscroll-behavior:none;
+  overflow:hidden;
+}
+button{font-family:inherit;color:inherit;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+svg{display:block}
+
+/* ---------- startskärm ---------- */
+#startskarm{position:fixed;inset:0;z-index:40;background:var(--papper);display:flex;align-items:center;justify-content:center;padding:16px;overflow:auto}
+.sk-inner{max-width:620px;width:100%;text-align:center}
+.sk-ikon{width:84px;height:84px;border-radius:20px;margin:0 auto 10px}
+.sk-inner h1{margin:0 0 6px;font-size:clamp(26px,5vw,40px);letter-spacing:-.5px}
+.sk-tagline{margin:0 0 12px;color:var(--mjuk);font-size:clamp(16px,2.4vw,20px)}
+.sk-taggar{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:16px}
+.sk-taggar span{background:var(--papper2);border-radius:999px;padding:5px 12px;font-size:14px;color:#3d434d}
+.sk-play{display:inline-flex;align-items:center;gap:10px;background:var(--gron);color:#fff;border:0;border-radius:999px;padding:14px 34px;font-size:22px;font-weight:650;cursor:pointer;box-shadow:0 3px 0 var(--gron2)}
+.sk-play:active{transform:translateY(2px);box-shadow:0 1px 0 var(--gron2)}
+.sk-play svg{width:22px;height:22px;fill:currentColor}
+.sk-fot{margin:12px 0 0;color:#8b909a;font-size:13px}
+.sk-laroplan{text-align:left;margin:18px auto 0;font-size:14px;color:#464c56;max-width:560px}
+.sk-laroplan summary{cursor:pointer;color:var(--gron);font-weight:600;list-style:none}
+.sk-laroplan summary::-webkit-details-marker{display:none}
+.sk-laroplan p{line-height:1.5}
+
+/* ---------- spelram ---------- */
+#spelet{height:100%;height:100dvh;display:flex;flex-direction:column;padding:8px 10px 6px;gap:6px}
+.hud{display:flex;align-items:center;justify-content:space-between;gap:8px;flex:0 0 auto}
+.hud-vanster{display:flex;align-items:center;gap:8px;min-width:0}
+.niva-prickar{display:flex;gap:5px}
+.niva-prickar i{width:11px;height:11px;border-radius:50%;background:#d8d1c4;display:block}
+.niva-prickar i.klar{background:var(--gron)}
+.niva-prickar i.nu{background:var(--gul)}
+.hud-text{font-size:14px;color:var(--mjuk);white-space:nowrap}
+.stjarnor{font-size:20px;color:var(--gul);letter-spacing:2px}
+.hud-hoger{display:flex;gap:6px}
+.knapp{width:44px;height:44px;border-radius:50%;border:1px solid #e2dbcd;background:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.knapp svg{width:20px;height:20px;fill:var(--black)}
+.knapp[aria-pressed="true"] .ljud-streck{opacity:1}
+.knapp[aria-pressed="false"] .ljud-streck{opacity:0}
+
+.spel{flex:1 1 auto;display:flex;flex-direction:column;gap:6px;min-height:0}
+.mal{margin:0;text-align:center;font-size:clamp(16px,2.2vw,21px);font-weight:650;color:#2b3138}
+.brada{flex:1 1 auto;min-height:0;display:flex;align-items:center;justify-content:center;background:var(--papper2);border-radius:16px;overflow:hidden}
+#tavla{width:100%;height:100%;max-height:100%}
+.bricka{flex:0 0 auto;display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.del-knapp{display:flex;flex-direction:column;align-items:center;gap:2px;background:#fff;border:2px solid #e2dbcd;border-radius:14px;padding:6px 10px;min-width:82px;min-height:82px;cursor:pointer}
+.del-knapp svg{width:44px;height:44px}
+.del-knapp span{font-size:12px;color:#4a515b}
+.del-knapp.aktiv{border-color:var(--gul);box-shadow:0 0 0 3px rgba(232,163,61,.28);background:#fffaef}
+.hjalp{margin:0;text-align:center;font-size:14px;color:var(--mjuk);min-height:20px}
+
+/* ---------- resultatruta ---------- */
+.ruta{position:fixed;inset:0;z-index:30;background:var(--papper);display:flex;align-items:center;justify-content:center;padding:20px}
+.ruta-inner{text-align:center;max-width:520px}
+.ruta-kotten{width:130px;height:130px;margin:0 auto 6px}
+.ruta-titel{margin:0 0 8px;font-size:clamp(22px,4vw,30px);font-weight:700}
+.ruta-text{margin:0 0 18px;font-size:17px;line-height:1.45;color:#3f4650}
+.knapp-stor{background:var(--gron);color:#fff;border:0;border-radius:999px;padding:14px 30px;font-size:20px;font-weight:650;cursor:pointer;box-shadow:0 3px 0 var(--gron2)}
+.knapp-stor:active{transform:translateY(2px);box-shadow:0 1px 0 var(--gron2)}
+
+/* ---------- tavlans delar ---------- */
+.plats-hit{fill:transparent;cursor:pointer}
+.plats-ring{fill:none;stroke:#c9c0ae;stroke-width:5;stroke-dasharray:14 12}
+.plats-ring.mal-puls{stroke:var(--gul);animation:puls 1.5s ease-in-out infinite}
+.plats-ring.fel{stroke:var(--rod)}
+@keyframes puls{0%,100%{opacity:.45}50%{opacity:1}}
+.glow{animation:glow 2s ease-in-out infinite}
+#lager-del,#lager-kotten{pointer-events:none}
+@keyframes glow{0%,100%{opacity:.35}50%{opacity:.85}}
+@media (prefers-reduced-motion:reduce){
+  .plats-ring.mal-puls,.glow{animation:none;opacity:1}
+  .sk-play:active,.knapp-stor:active{transform:none}
+}
