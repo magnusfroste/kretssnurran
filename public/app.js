@@ -295,6 +295,7 @@
   /* ---------- tal ---------- */
   var roster = null;
   function tala(text) {
+          try { if (window.__rost && window.__rost(text, true)) return; } catch (e) { }
     if (!S.ljud || !("speechSynthesis" in window)) return;
     try {
       window.speechSynthesis.cancel();
