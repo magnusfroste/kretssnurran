@@ -47,6 +47,6 @@ nyfiken), ritas i SVG.
    brytare eller isolatorer; förklaringen pekar på det som faktiskt är fel.
 5. Tryckytor: varje plats ≥ 56 px i alla fyra storlekar (mätt ur SVG:ns skalning).
 6. Ingen inloggning, ingen reklam, inga länkar ut, ingen tredjeparts-CDN (kotten.js
-   undantagen, den ligger på skolappar.com).
+   undantagen, den ligger på skolappar.org).
 7. Faktakontroll: påståendena i appen (vad som leder ström, vad en bruten krets gör) ska
    stämma med grundskolans fysik – inga påhittade siffror eller material.
