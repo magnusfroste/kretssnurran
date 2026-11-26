@@ -35,11 +35,11 @@
   ];
 
   var DELAR = {
-    batteri: { namn: "batteri", leder: true, batteri: true },
-    lampa: { namn: "lampa", leder: true, lampa: true },
-    brytare: { namn: "strömbrytare", leder: true, brytare: true },
-    koppar: { namn: "koppartråd", leder: true },
-    gummi: { namn: "gummislang", leder: false, isolator: true }
+    batteri: { namn: "batteri", plats: "Tryck på platsen där batteriet ska sitta.", leder: true, batteri: true },
+    lampa: { namn: "lampa", plats: "Tryck på platsen där lampan ska sitta.", leder: true, lampa: true },
+    brytare: { namn: "strömbrytare", plats: "Tryck på platsen där strömbrytaren ska sitta.", leder: true, brytare: true },
+    koppar: { namn: "koppartråd", plats: "Tryck på platsen där koppartråden ska sitta.", leder: true },
+    gummi: { namn: "gummislang", plats: "Tryck på platsen där gummislangen ska sitta.", leder: false, isolator: true }
   };
 
   /* En nivå lägger till en sak i taget. lampor = hur många lampor som måste sitta i kretsen. */
@@ -293,28 +293,12 @@
   function ljudTand() { klang(523, 0.14, "triangle"); setTimeout(function () { klang(784, 0.2, "triangle"); }, 130); }
 
   /* ---------- tal ---------- */
-  var roster = null;
+  /* Färdiga mp3-filer ur ljud/ (se ljud/lines.js) – ingen talsyntes, så rösten
+     låter likadant i alla webbläsare. Saknas filen blir det tyst. */
   function tala(text) {
-          try { if (window.__rost && window.__rost(text, true)) return; } catch (e) { }
-    if (!S.ljud || !("speechSynthesis" in window)) return;
-    try {
-      window.speechSynthesis.cancel();
-      var u = new SpeechSynthesisUtterance(text);
-      u.lang = "sv-SE"; u.rate = 0.95; u.pitch = 1.02;
-      if (roster) u.voice = roster;
-      window.speechSynthesis.speak(u);
-    } catch (e) { /* talsyntes är aldrig ett krav */ }
-  }
-  function valjRoster() {
-    if (!("speechSynthesis" in window)) return;
-    try {
-      var alla = window.speechSynthesis.getVoices() || [];
-      for (var i = 0; i < alla.length; i++) if (/sv[-_]SE/i.test(alla[i].lang)) { roster = alla[i]; break; }
-    } catch (e) {}
-  }
-  if ("speechSynthesis" in window) {
-    valjRoster();
-    window.speechSynthesis.onvoiceschanged = valjRoster;
+    if (!S.ljud) return;
+    try { if (window.__rost && window.__rost(text, true)) return; } catch (e) { }
+    try { if (window.console && window.__rostFinns && !window.__rostFinns(text)) console.warn("saknar mp3:", text); } catch (e) {}
   }
 
   function kottensEvent(namn, varde) {
@@ -435,9 +419,9 @@
     ritaBricka();
     ritaTavla();
     $("hjalp").textContent = S.valt
-      ? "Tryck på platsen i kretsen där " + DELAR[S.valt].namn + "en ska sitta."
+      ? DELAR[S.valt].plats
       : "Tryck på en del i brickan, sedan på en plats i kretsen.";
-    if (S.valt) tala("Tryck på platsen där " + DELAR[S.valt].namn + "en ska sitta.");
+    if (S.valt) tala(DELAR[S.valt].plats);
   }
 
   /* ---------- tryck på en plats ---------- */
@@ -575,7 +559,7 @@
       this.setAttribute("aria-pressed", S.ljud ? "false" : "true");
       this.setAttribute("aria-label", S.ljud ? "Stäng av ljud" : "Sätt på ljud");
       if (!S.ljud) {
-        if ("speechSynthesis" in window) window.speechSynthesis.cancel();
+        try { if (window.__rostStopp) window.__rostStopp(); } catch (e) {}
         kottensEvent("sound_off");
       } else klang(660, 0.1);
     });
